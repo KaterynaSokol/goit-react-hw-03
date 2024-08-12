@@ -1,6 +1,4 @@
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
 import ContactForm from "./ContactForm/ContactForm";
@@ -17,15 +15,32 @@ const App = () => {
 
     setFilterValue(value);
   };
+  const onAddContact = (newContact) => {
+    const finalContact = {
+      ...newContact,
+      id: nanoid(),
+    };
+
+    setContacts([finalContact, ...contacts]);
+  };
+
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filterValue.toLowerCase())
   );
+
+  const onDeleteContact = (contactId) => {
+    setContacts(contacts.filter((contact) => contact.id !== contactId));
+  };
+
   return (
     <div className="container">
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox filterValue={filterValue} setFilterValue={handleFilter} />
-      <ContactList contacts={filteredContacts} />
+      <h1 className="mainTitle">Phonebook</h1>
+      <ContactForm onAddContact={onAddContact} />
+      <SearchBox filterValue={filterValue} handleFilter={handleFilter} />
+      <ContactList
+        contacts={filteredContacts}
+        onDeleteContact={onDeleteContact}
+      />
     </div>
   );
 };

@@ -1,7 +1,8 @@
-const SearchBox = () => {
+import css from "./SearchBox.module.css";
+const SearchBox = ({ filterValue, handleFilter }) => {
   return (
     <div>
-      <h2>Find contacts by name</h2>
+      <p className={css.title}>Find contacts by name</p>
       <input
         type="text"
         placeholder="Enter name"
