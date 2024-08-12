@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
 import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./ContactList/ContactList";
+import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import contactsData from "./contactsData.json";
 
